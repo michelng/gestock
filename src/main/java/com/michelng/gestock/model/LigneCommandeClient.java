@@ -1,9 +1,12 @@
 package com.michelng.gestock.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.michelng.gestock.model.enumeration.StatutCmd;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 
 @Data
 @Builder
@@ -14,17 +17,32 @@ import java.math.BigDecimal;
 @Table(name = "lignecommandeclient")
 public class LigneCommandeClient extends AbstractEntity{
 
-    @ManyToOne
-    @JoinColumn(name = "idarticle")
-    private Article article;
-
-    @ManyToOne
-    @JoinColumn(name = "idcommandeclient")
-    private CommandeClient commandeClient;
-
-    @Column(name = "quantite")
+    @Column(name = "quantite", precision = 21, scale = 2)
     private BigDecimal quantite;
 
-    @Column(name = "prixunitaire")
+    @Column(name = "prix_unitaire", precision = 21, scale = 2)
     private BigDecimal prixUnitaire;
+
+    @Column(name = "date_livraison_prevue")
+    private Instant dateLivraisonPrevue;
+
+    @Column(name = "montant_total", precision = 21, scale = 2)
+    private BigDecimal montantTotal;
+
+    @Column(name = "commentaire")
+    private String commentaire;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "statut_cmd")
+    private StatutCmd statutCmd;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = { "magasin", "categorie" }, allowSetters = true)
+    private Article article;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = { "client" }, allowSetters = true)
+
+    private CommandeClient commandeClient;
+
 }

@@ -1,5 +1,6 @@
 package com.michelng.gestock.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,16 +16,17 @@ import java.time.Instant;
 @Table(name = "mvtstck")
 public class MvtStck  extends AbstractEntity{
 
-    @Column(name = "datemvt")
-    private Instant dateMvt;
+    @Column(name = "date_mvnt")
+    private Instant dateMvnt;
 
-    @ManyToOne
-    @JoinColumn(name = "idarticle")
-    private Article article;
-
-    @Column(name = "quantite")
+    @Column(name = "quantite", precision = 21, scale = 2)
     private BigDecimal quantite;
 
-    @Column(name = "typemvt")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type_mvt")
     private TypeMvt typeMvt;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = { "magasin", "categorie" }, allowSetters = true)
+    private Article article;
 }
