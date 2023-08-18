@@ -16,8 +16,10 @@ import java.time.Instant;
 public class AbstractEntity implements Serializable {
 
     @Id
-    @GeneratedValue
-    private int id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+    @SequenceGenerator(name = "sequenceGenerator")
+    @Column(name = "id")
+    private Long id;
 
     @CreatedDate
     @Column(name="creationdate", nullable = false)

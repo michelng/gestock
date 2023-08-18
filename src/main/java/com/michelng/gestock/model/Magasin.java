@@ -1,5 +1,6 @@
 package com.michelng.gestock.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,34 +18,25 @@ public class Magasin extends AbstractEntity {
     @Column(name = "nom")
     private String nom;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "raison_sociale")
+    private String raisonSociale;
 
-    @Embedded
-    private Adresse adresse;
+    @Column(name = "telephone_1")
+    private String telephone1;
 
-    @Column(name = "codeFiscal")
-    private String codeFiscal;
-
-    @Column(name = "photo")
-    private String photo;
+    @Column(name = "telephone_2")
+    private String telephone2;
 
     @Column(name = "email")
     private String email;
 
-    @Column(name = "telephone")
-    private String telephone;
+    @Column(name = "logo")
+    private String logo;
 
-    @Column(name = "sitweb")
-    private String sitWeb;
+    @Column(name = "description")
+    private String description;
 
-    @OneToMany(mappedBy = "magasin")
-    private List<Utilisateur> utilisateurs;
-
-    @ManyToOne
-    @JoinColumn(name = "identreprise")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = { "employes", "magasins" }, allowSetters = true)
     private Entreprise entreprise;
-
-
-
 }

@@ -1,5 +1,6 @@
 package com.michelng.gestock.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -36,6 +37,16 @@ public class Article extends AbstractEntity{
     @ManyToOne
     @JoinColumn(name = "idcategorie")
     private Categorie categorie;
+
+    @Column(name = "quantite_en_stock", precision = 21, scale = 2)
+    private BigDecimal quantiteEnStock;
+
+    @Column(name = "seuil_de_reapprovisionnement", precision = 21, scale = 2)
+    private BigDecimal seuilDeReapprovisionnement;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idMagasin")
+    private Magasin magasin;
 
 //    @OneToMany(mappedBy = "article")
 //    private List<LigneCommandeClient> ligneCommandeClient;
