@@ -1,2 +1,16 @@
-package com.michelng.gestock.dto;public class CategorieDto {
+package com.michelng.gestock.dto;
+
+import com.michelng.gestock.model.Article;
+
+import java.util.List;
+
+public class CategorieDto {
+
+    private String code;
+
+    private String designation;
+
+    private String description;
+
+    private List<Article> articles;
 }
