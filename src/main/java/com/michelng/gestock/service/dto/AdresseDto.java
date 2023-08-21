@@ -1,4 +1,4 @@
-package com.michelng.gestock.dto;
+package com.michelng.gestock.service.dto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

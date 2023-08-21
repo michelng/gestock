@@ -1,4 +1,4 @@
-package com.michelng.gestock.dto;
+package com.michelng.gestock.service.dto;
 
 public class DiscountDto {
     private String code;

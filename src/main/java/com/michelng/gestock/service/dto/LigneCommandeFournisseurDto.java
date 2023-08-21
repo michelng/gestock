@@ -1,4 +1,4 @@
-package com.michelng.gestock.dto;
+package com.michelng.gestock.service.dto;
 
 import com.michelng.gestock.model.Article;
 import com.michelng.gestock.model.CommandeFournisseur;
