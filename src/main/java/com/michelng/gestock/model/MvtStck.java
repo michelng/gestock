@@ -1,6 +1,7 @@
 package com.michelng.gestock.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.michelng.gestock.model.enumeration.TypeMvt;
 import jakarta.persistence.*;
 import lombok.*;
 
